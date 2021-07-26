@@ -65,13 +65,13 @@ it("in memory DB connection", async () => {
 describe("/api/userboard testing", () => {
 
   it("should return 401 for missing header", async () => {
-    const response = await request.get("/api/userboards"); 
+    const response = await request.get("/api/userboard"); 
   
     expect(response.status).toBe(401);
   });
 
   it("should return 200 for header", async () => {
-    const response = await request.get("/api/userboards").set("user_id", "123"); 
+    const response = await request.get("/api/userboard").set("user_id", "123"); 
   
     expect(response.status).toBe(200);
   });
