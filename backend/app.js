@@ -9,11 +9,11 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/', indexRouter);
+app.get('/', (req, res) => {
+  res.json({ message: "hello, stranger" })
+});
 
-app.get("/api/", (req, res) => {
-  res.json({ message: "hello world" })
-})
+app.use("/api", indexRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
