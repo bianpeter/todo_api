@@ -1,37 +1,5 @@
 const mongoose = require('mongoose');
 
-const example =  {
-  user_id:"123",
-  dashboards: [
-    {
-      title: "title",
-      todos: [
-        {
-          title: "title",
-          description: "something",
-        },
-        {
-          title: "title",
-          description: "something",
-        },
-      ],
-    },
-    {
-      title: "title",
-      todos: [
-        {
-          title: "title",
-          description: "something",
-        },
-        {
-          title: "title",
-          description: "something",
-        },
-      ],
-    },
-  ],
-};
-
 const TodoSchema = new mongoose.Schema({
   title: {
     type: String,

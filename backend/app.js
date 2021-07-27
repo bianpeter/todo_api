@@ -1,10 +1,14 @@
-var createError = require('http-errors');
-var express = require('express');
-var logger = require('morgan');
-var app = express();
+const createError = require('http-errors');
+const express = require('express');
+const logger = require('morgan');
+const app = express();
+const cors = require('cors')
+require('express-async-errors')
 
-var indexRouter = require('./routes/index');
+const userboardRouter = require('./routes/userboardRouter');
+const errorHandler = require('./middleware/errorHandler');
 
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -13,7 +17,13 @@ app.get('/', (req, res) => {
   res.json({ message: "hello, stranger" })
 });
 
-app.use("/api", indexRouter)
+/* GET home page. */
+app.get('/api', function (req, res, next) {
+  res.json({message: "hello world"});
+});
+
+
+app.use("/api/userboard", userboardRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -21,14 +31,6 @@ app.use(function (req, res, next) {
 });
 
 // error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.send('error');
-});
+app.use(errorHandler);
 
 module.exports = app;
