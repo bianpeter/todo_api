@@ -15,6 +15,22 @@ describe('Smoke tests', () =>{
     expect(1).toBe(1);
   });
 
+  describe("supertest works", () => {
+
+    test("should return status of 404", async () => {
+      const response = await request.get("/badendpoint");
+    
+      expect(response.status).toBe(404);
+    });
+  
+    test("should return status of 200", async () => {
+      const response = await request.get("/api/");
+    
+      expect(response.status).toBe(200);
+      expect(response.body.message).toBe("hello world");
+    });
+  });
+
   test('inMemDB works', async () => {
     const Cat = mongoose.model('Cat', { name: String });
 
