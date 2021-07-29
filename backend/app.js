@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 
 /* GET home page. */
 app.get('/api', function (req, res, next) {
-  res.json({message: "hello world"});
+  res.json({message: "hello api"});
 });
 
 
